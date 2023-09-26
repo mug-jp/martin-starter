@@ -1,0 +1,55 @@
+version: '3'
+services:
+    postgis:
+        image: kartoza/postgis:15-3
+        environment:
+            - POSTGRES_USER=docker
+            - POSTGRES_PASS=docker
+            - POSTGRES_DB=postgres
+        ports:
+            - '5432:5432'
+        volumes:
+            - postgis-data:/var/lib/postgresql
+        networks:
+            - default
+        healthcheck:
+            test: ['CMD-SHELL', 'pg_isready']
+            interval: 10s
+            timeout: 5s
+            retries: 5
+    martin:
+        image: ghcr.io/maplibre/martin
+        restart: unless-stopped
+        ports:
+            - 3000:3000
+        depends_on:
+            postgis:
+                condition: service_healthy
+        networks:
+            - default
+        volumes:
+            - ./martin:/app
+        command: --config /app/config.yml
+    app:
+        image: node:18-bullseye-slim
+        working_dir: /app
+        ports:
+            - 3001:3001
+        depends_on:
+            martin:
+                condition: service_healthy
+        volumes:
+            - ./api/:/app
+        command:
+            - /bin/bash
+            - -c
+            - |
+                npm install
+                npm run dev
+volumes:
+    postgis-data:
+        driver: local
+
+networks:
+    default:
+        driver: bridge

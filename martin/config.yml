@@ -1,0 +1,14 @@
+keep_alive: 75
+listen_addresses: '0.0.0.0:3000'
+worker_processes: 8
+postgres:
+  connection_string: 'postgresql://docker:docker@postgis:5432/postgres'
+pmtiles:
+  paths:
+    - /app/tile
+mbtiles:
+  paths:
+    - /app/tile
+sprites:
+  paths:
+    - /app/svg
