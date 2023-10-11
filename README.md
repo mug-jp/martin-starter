@@ -32,6 +32,12 @@ Client --Tiles/Sprites--> martin
 
 ```
 
+## servers
+
+- Nginx: serving static files and reverse proxy to Martin
+- Martin
+- PostGIS
+
 ## data
 
 - /martin/maki: https://github.com/mapbox/maki
