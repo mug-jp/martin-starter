@@ -30,22 +30,6 @@ services:
         volumes:
             - ./martin:/app
         command: --config /app/config.yml
-    app:
-        image: node:18-bullseye-slim
-        working_dir: /app
-        ports:
-            - 3001:3001
-        depends_on:
-            martin:
-                condition: service_healthy
-        volumes:
-            - ./api/:/app
-        command:
-            - /bin/bash
-            - -c
-            - |
-                npm install
-                npm run dev
 volumes:
     postgis-data:
         driver: local

@@ -11,4 +11,4 @@ mbtiles:
     - /app/tile
 sprites:
   paths:
-    - /app/svg
+    - /app/maki
