@@ -31,6 +31,17 @@ services:
         volumes:
             - ./martin:/app
         command: --config /app/config.yml
+    nginx:
+        image: nginx
+        ports:
+            - '80:80'
+        volumes:
+            - ./nginx/html:/usr/share/nginx/html
+            - ./nginx/conf.d:/etc/nginx/conf.d
+        networks:
+            - default
+        depends_on:
+            - martin
 volumes:
     postgis-data:
         driver: local
