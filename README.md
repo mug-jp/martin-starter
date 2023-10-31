@@ -26,9 +26,10 @@ martin --> PostGIS-tables
 martin --> MBTiles-files
 martin --> PMTiles-files
 martin --> SVG-files
+martin --> Font-files
 
 
-Client --Tiles/Sprites--> martin
+Client --Tiles/Sprites/Glyphs--> martin
 
 ```
 
