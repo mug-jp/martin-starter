@@ -41,6 +41,7 @@ Client --Tiles/Sprites--> martin
 ## data
 
 - /martin/maki: https://github.com/mapbox/maki
+- /martin/font/azukiP.ttf: http://azukifont.com/
 - /martin/tile/points.mbtiles: https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P29-v2_0.html
 - /martin/tile/polygons.pmtiles: https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-v3_1.html
 - /postgis-init/02-highway.sql: https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N06-v2_0.html
