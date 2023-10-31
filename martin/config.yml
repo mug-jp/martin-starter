@@ -12,3 +12,5 @@ mbtiles:
 sprites:
   paths:
     - /app/maki
+fonts:
+  - /app/font

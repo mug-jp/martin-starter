@@ -19,7 +19,7 @@ services:
             timeout: 5s
             retries: 5
     martin:
-        image: ghcr.io/maplibre/martin
+        image: ghcr.io/maplibre/martin:v0.10.0
         restart: unless-stopped
         ports:
             - 3000:3000
