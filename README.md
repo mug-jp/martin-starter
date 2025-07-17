@@ -12,10 +12,10 @@ cd martin-starter
 docker compose up -d
 ```
 
-Then, you can access the app at http://localhost
+Then, you can access the app at http://localhost:8080/
 
-- catalog: `http://localhost/martin/catalog`
-- sprite: `http://localhost/martin/sprite/maki[.png|.json]`
+- catalog: `http://localhost:8080/martin/catalog`
+- sprite: `http://localhost:8080/martin/sprite/maki[.png|.json]`
 
 ## diagram
 
