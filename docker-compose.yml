@@ -1,50 +1,50 @@
 services:
-    postgis:
-        image: kartoza/postgis:15-3
-        environment:
-            - POSTGRES_USER=docker
-            - POSTGRES_PASS=docker
-            - POSTGRES_DB=postgres
-        ports:
-            - 5432
-        volumes:
-            - postgis-data:/var/lib/postgresql
-            - ./postgis-init/:/docker-entrypoint-initdb.d/
-        networks:
-            - default
-        healthcheck:
-            test: ['CMD-SHELL', 'pg_isready']
-            interval: 10s
-            timeout: 5s
-            retries: 5
-    martin:
-        image: ghcr.io/maplibre/martin:v0.17.0
-        restart: unless-stopped
-        ports:
-            - 3000
-        depends_on:
-            postgis:
-                condition: service_healthy
-        networks:
-            - default
-        volumes:
-            - ./martin:/app
-        command: --config /app/config.yml
-    nginx:
-        image: nginx
-        ports:
-            - '8080:80'
-        volumes:
-            - ./nginx/html:/usr/share/nginx/html
-            - ./nginx/conf.d:/etc/nginx/conf.d
-        networks:
-            - default
-        depends_on:
-            - martin
+  postgis:
+    image: kartoza/postgis:17-3.5--v2025.08.15
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASS=docker
+      - POSTGRES_DB=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgis-data:/var/lib/postgresql
+      - ./postgis-init/:/docker-entrypoint-initdb.d/
+    networks:
+      - default
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  martin:
+    image: ghcr.io/maplibre/martin:v0.18.0
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    depends_on:
+      postgis:
+        condition: service_healthy
+    networks:
+      - default
+    volumes:
+      - ./martin:/app
+    command: --config /app/config.yml
+  nginx:
+    image: nginx
+    ports:
+      - '8080:80'
+    volumes:
+      - ./nginx/html:/usr/share/nginx/html
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - default
+    depends_on:
+      - martin
 volumes:
-    postgis-data:
-        driver: local
+  postgis-data:
+    driver: local
 
 networks:
-    default:
-        driver: bridge
+  default:
+    driver: bridge

@@ -1,111 +1,105 @@
 <html lang="ja">
-    <head>
-        <title>Martin Tile Server</title>
-        <script src="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.js"></script>
-        <link
-            href="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.css"
-            rel="stylesheet"
-        />
-    </head>
-    <body style="margin: 0">
-        <div id="map" style="height: 100vh"></div>
-        <script>
-            const map = new maplibregl.Map({
-                container: 'map',
-                center: [139.7212, 35.73273],
-                zoom: 12,
-                hash: true,
-                localIdeographFontFamily: false, // to load CJK fonts
-                style: {
-                    version: 8,
-                    sprite: 'http://localhost:8080/martin/sprite/maki',
-                    glyphs: 'http://localhost:8080/martin/font/{fontstack}/{range}',
-                    sources: {
-                        osm: {
-                            type: 'raster',
-                            tiles: [
-                                'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                            ],
-                            attribution: 'OpenStreetMap contributors',
-                        },
-                        martin_polygons: {
-                            type: 'vector',
-                            tiles: [
-                                'http://localhost:8080/martin/polygons/{z}/{x}/{y}',
-                            ],
-                            maxzoom: 14,
-                        },
-                        martin_points: {
-                            type: 'vector',
-                            tiles: [
-                                'http://localhost:8080/martin/points/{z}/{x}/{y}',
-                            ],
-                            maxzoom: 12,
-                        },
-                        martin_lines: {
-                            type: 'vector',
-                            tiles: [
-                                'http://localhost:8080/martin/n06_22_highwaysection/{z}/{x}/{y}',
-                            ],
-                        },
-                    },
-                    layers: [
-                        {
-                            id: 'osm',
-                            type: 'raster',
-                            source: 'osm',
-                        },
-                        {
-                            id: 'polygons',
-                            source: 'martin_polygons',
-                            'source-layer': 'admin',
-                            type: 'fill',
-                            paint: {
-                                'fill-color': '#f00',
-                                'fill-opacity': 0.5,
-                            },
-                        },
-                        {
-                            id: 'lines',
-                            source: 'martin_lines',
-                            'source-layer': 'n06_22_highwaysection',
-                            type: 'line',
-                            paint: {
-                                'line-color': '#0f0',
-                                'line-width': 2,
-                            },
-                        },
-                        {
-                            id: 'points',
-                            source: 'martin_points',
-                            'source-layer': 'P2921',
-                            type: 'symbol',
-                            layout: {
-                                'icon-image': 'college-JP',
-                                'icon-size': 1.5,
-                            },
-                        },
-                        {
-                            id: 'points-labels',
-                            source: 'martin_points',
-                            'source-layer': 'P2921',
-                            type: 'symbol',
-                            layout: {
-                                'text-field': ['get', 'P29_004'],
-                                'text-size': 16,
-                                'text-anchor': 'top',
-                                'text-offset': [0, 1],
-                                'text-font': ['azukifontP Regular'],
-                            },
-                            paint: {
-                                'text-color': '#000',
-                                'text-halo-color': '#fff',
-                                'text-halo-width': 2,
-                            },
-                        },
-                    ],
-                },
-            });
-        </script>
-    </body>
+	<head>
+		<title>Martin Tile Server</title>
+		<script src="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.js"></script>
+		<link
+			href="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.css"
+			rel="stylesheet"
+		/>
+	</head>
+	<body style="margin: 0">
+		<div id="map" style="height: 100vh"></div>
+		<script>
+			const map = new maplibregl.Map({
+				container: 'map',
+				center: [139.7212, 35.73273],
+				zoom: 12,
+				hash: true,
+				localIdeographFontFamily: false, // to load CJK fonts
+				style: {
+					version: 8,
+					sprite: 'http://localhost:8080/martin/sprite/maki',
+					glyphs: 'http://localhost:8080/martin/font/{fontstack}/{range}',
+					sources: {
+						osm: {
+							type: 'raster',
+							tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
+							attribution: 'OpenStreetMap contributors',
+						},
+						martin_polygons: {
+							type: 'vector',
+							tiles: ['http://localhost:8080/martin/polygons/{z}/{x}/{y}'],
+							maxzoom: 14,
+						},
+						martin_points: {
+							type: 'vector',
+							tiles: ['http://localhost:8080/martin/points/{z}/{x}/{y}'],
+							maxzoom: 12,
+						},
+						martin_lines: {
+							type: 'vector',
+							tiles: [
+								'http://localhost:8080/martin/table.public.n06_22_highwaysection.wkb_geometry/{z}/{x}/{y}',
+							],
+						},
+					},
+					layers: [
+						{
+							id: 'osm',
+							type: 'raster',
+							source: 'osm',
+						},
+						{
+							id: 'polygons',
+							source: 'martin_polygons',
+							'source-layer': 'admin',
+							type: 'fill',
+							paint: {
+								'fill-color': '#f00',
+								'fill-opacity': 0.5,
+							},
+						},
+						{
+							id: 'lines',
+							source: 'martin_lines',
+							'source-layer': 'table.public.n06_22_highwaysection.wkb_geometry',
+							type: 'line',
+							paint: {
+								'line-color': '#0f0',
+								'line-width': 2,
+							},
+						},
+						{
+							id: 'points',
+							source: 'martin_points',
+							'source-layer': 'P2921',
+							type: 'symbol',
+							layout: {
+								'icon-image': 'college-JP',
+								'icon-size': 1.5,
+							},
+						},
+						{
+							id: 'points-labels',
+							source: 'martin_points',
+							'source-layer': 'P2921',
+							type: 'symbol',
+							layout: {
+								'text-field': ['get', 'P29_004'],
+								'text-size': 16,
+								'text-anchor': 'top',
+								'text-offset': [0, 1],
+								'text-font': ['azukifontP Regular'],
+							},
+							paint: {
+								'text-color': '#000',
+								'text-halo-color': '#fff',
+								'text-halo-width': 2,
+							},
+						},
+					],
+				},
+			});
+		</script>
+	</body>
 </html>

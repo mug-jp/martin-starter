@@ -1,8 +1,17 @@
 keep_alive: 75
 listen_addresses: '0.0.0.0:3000'
 worker_processes: 8
+preferred_encoding: gzip
+web_ui: enable-for-all
 postgres:
   connection_string: 'postgresql://docker:docker@postgis:5432/postgres'
+  auto_publish:
+    tables:
+      source_id_format: 'table.{schema}.{table}.{column}'
+      id_columns: ogc_fid
+      clip_geom: true
+      buffer: 64
+      extent: 4096
 pmtiles:
   paths:
     - /app/tile

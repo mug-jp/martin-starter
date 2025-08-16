@@ -12,7 +12,8 @@ cd martin-starter
 docker compose up -d
 ```
 
-Then, you can access the app at http://localhost:8080/
+Then, you can access the app at <http://localhost:8080/>
+And you can see Martin Web UI at <http://localhost:3000/>
 
 - catalog: `http://localhost:8080/martin/catalog`
 - sprite: `http://localhost:8080/martin/sprite/maki[.png|.json]`
@@ -41,8 +42,8 @@ Client --Tiles/Sprites/Glyphs--> martin
 
 ## data
 
-- /martin/maki: https://github.com/mapbox/maki
-- /martin/font/azukiP.ttf: http://azukifont.com/
-- /martin/tile/points.mbtiles: https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P29-v2_0.html
-- /martin/tile/polygons.pmtiles: https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-v3_1.html
-- /postgis-init/02-highway.sql: https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N06-v2_0.html
+- /martin/maki: <https://github.com/mapbox/maki>
+- /martin/font/azukiP.ttf: <http://azukifont.com/>
+- /martin/tile/points.mbtiles: <https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P29-v2_0.html>
+- /martin/tile/polygons.pmtiles: <https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-v3_1.html>
+- /postgis-init/02-highway.sql: <https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N06-v2_0.html>
